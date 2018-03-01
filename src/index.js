@@ -1,12 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom'
 import './index.css';
 import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
-import { createStore, applyMiddleware } from 'redux';
-import reducer from './reducers';
-import registerServiceWorker from './registerServiceWorker';
+import { createStore, applyMiddleware, compose } from 'redux';
+import reducers from './reducers';
 import App from './App';
 
 
@@ -15,14 +14,32 @@ const middleware = [
   thunkMiddleware                                                   //allows to return functions instead of actions for dispatch, awesome for async requests
 ].filter(Boolean);
 
-const store = createStore(
-  reducer,
-  applyMiddleware(...middleware)
-)
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-ReactDOM.render(
+const configureStore = () => {
+
+  const store = createStore(
+    reducers,
+    composeEnhancers(
+      applyMiddleware(...middleware),
+    )
+  )
+
+  if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('./reducers', () => {
+      store.replaceReducer(reducers)
+    })
+  }
+
+  return store
+}
+
+const store = configureStore()
+
+render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('root'));
-  registerServiceWorker();
+  document.getElementById('root')
+);

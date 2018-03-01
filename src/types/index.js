@@ -1,5 +1,7 @@
 const types = {
-
+  CREATE_REQUEST: 'CREATE_REQUEST',
+  REQUEST_SUCCESS: 'REQUEST_SUCCESS',
+  REQUEST_FAILURE: 'REQUEST_FAILURE',
 }
 
 module.exports = types;
