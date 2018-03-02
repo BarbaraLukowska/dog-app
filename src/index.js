@@ -5,22 +5,24 @@ import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { createStore, applyMiddleware, compose } from 'redux';
-import reducers from './reducers';
+import rootReducer from './reducers';
 import App from './App';
 
+const initialState = {
+  isFetching: false,
+}
 
 const middleware = [
   process.env.NODE_ENV === 'development' && createLogger({collapsed: true}),  //logging redux actions
   thunkMiddleware                                                   //allows to return functions instead of actions for dispatch, awesome for async requests
 ].filter(Boolean);
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
 const configureStore = () => {
 
   const store = createStore(
-    reducers,
-    composeEnhancers(
+    rootReducer,
+    initialState,
+    compose(
       applyMiddleware(...middleware),
     )
   )
@@ -28,14 +30,14 @@ const configureStore = () => {
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('./reducers', () => {
-      store.replaceReducer(reducers)
+
+      store.replaceReducer(rootReducer)
     })
   }
-
   return store
 }
 
-const store = configureStore()
+const store = configureStore();
 
 render(
   <Provider store={store}>
