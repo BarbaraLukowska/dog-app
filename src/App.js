@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getAllDogs } from './actions/index';
+import { getAllDogs, getBreedNames, getDogImages } from './actions/index';
+import Search from './modules/Search';
 
 import './App.css';
 
@@ -8,22 +9,24 @@ class App extends Component {
 
   componentDidMount() {
     this.props.getAllDogs();
+    this.props.getBreedNames();
+    this.props.getDogImages(this.props.breedName)
   }
-
+  
   render() {
-
     const {
-      dogs
+      // dogs,
+      // breeds,
     } = this.props;
 
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
+          {/* <Search /> */}
         </header>
-        <p className="App-intro">
+        <div> 
 
-        </p>
+        </div>
       </div>
     );
   }
@@ -32,13 +35,16 @@ class App extends Component {
 
 // const mapStateToProps = (state) => {
 //   return {
-//     // dogs: state.data.dogs || []
+//     dogs: state.data.dogs || [],
+//     breeds: state.data.breeds || [],
 //   }
 // }
 
 const DogApp = connect(
   null,
-  {getAllDogs}
+  {getAllDogs,
+  getBreedNames,
+  getDogImages}
 )(App);
 
 export default DogApp;
