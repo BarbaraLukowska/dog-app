@@ -26,7 +26,7 @@ class App extends Component {
         </header>
         <div>
           {
-            images && images.map( (image) => <div>{image}</div>)
+            images && images.map( (image) => <p>{image}</p>)
           }
         </div>
       </div>
