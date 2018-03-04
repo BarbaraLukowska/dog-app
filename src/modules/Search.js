@@ -1,7 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { getDogImages } from '../actions/index';
-
 
 const SearchBar = ({handleChange}) => {
   return(

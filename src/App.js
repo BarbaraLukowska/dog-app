@@ -1,54 +1,48 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getAllDogs, getBreedNames, searchByBreed, getDogImages } from './actions/index';
+import { getDogImages } from './actions/index';
 import SearchBar from './modules/Search';
 
 import './App.css';
 
 class App extends Component {
 
-  componentDidMount() {
-    this.props.getAllDogs();
-    this.props.getBreedNames();
-  }
-
   onSearchChange(value){
-    console.log(value)
     this.props.getDogImages(value);
   }
 
   render() {
-    const {
-      // dogs,
-      // breeds,
-    } = this.props;
 
+    const {
+      breed
+    } = this.props;
+    console.log(breed);
+    
     return (
       <div className="App">
         <header className="App-header">
           <SearchBar handleChange={(e) => this.onSearchChange(e.target.value || null) } />
         </header>
-
+        <div>
+          {
+            breed && breed.map( (b) => console.log(b))
+          }
+        </div>
       </div>
     );
   }
 }
 
 
-// const mapStateToProps = (state) => {
-//   return {
-//     dogs: state.data.dogs || [],
-//     breeds: state.data.breeds || [],
-//   }
-// }
+const mapStateToProps = (state) => {
+  return {
+    breed: state.data.breed || null
+  }
+}
 
 const DogApp = connect(
-  null,
-  {getAllDogs,
-  getBreedNames,
-  searchByBreed,
-  getDogImages
-}
+  mapStateToProps,
+  {getDogImages}
 )(App);
 
 export default DogApp;
