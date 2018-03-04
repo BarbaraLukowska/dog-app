@@ -40,9 +40,22 @@ const isFetching = (state = false, action) => {
   }
 };
 
+const search = (state= [], action) => {
+  switch(action.type) {
+    case types.SEARCH_BY_BREED:
+      return {
+        ...state,
+        filteredByBreed: action.filteredByBreed
+      }
+    default:
+      return state
+  }
+}
+
 const rootReducer = combineReducers({
   data,
-  isFetching
+  isFetching,
+  search
 })
 
 export default rootReducer;

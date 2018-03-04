@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getAllDogs, getBreedNames, getDogImages } from './actions/index';
-import Search from './modules/Search';
+import { getAllDogs, getBreedNames, searchByBreed, getDogImages } from './actions/index';
+import SearchBar from './modules/Search';
 
 import './App.css';
 
@@ -10,9 +10,13 @@ class App extends Component {
   componentDidMount() {
     this.props.getAllDogs();
     this.props.getBreedNames();
-    this.props.getDogImages(this.props.breedName)
   }
-  
+
+  onSearchChange(value){
+    console.log(value)
+    this.props.getDogImages(value);
+  }
+
   render() {
     const {
       // dogs,
@@ -22,11 +26,9 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          {/* <Search /> */}
+          <SearchBar handleChange={(e) => this.onSearchChange(e.target.value || null) } />
         </header>
-        <div> 
 
-        </div>
       </div>
     );
   }
@@ -44,7 +46,9 @@ const DogApp = connect(
   null,
   {getAllDogs,
   getBreedNames,
-  getDogImages}
+  searchByBreed,
+  getDogImages
+}
 )(App);
 
 export default DogApp;
