@@ -6,11 +6,11 @@ const URL_API = "https://dog.ceo/api"
 
 
 //get all breed images
-export function getDogImages(breed) {
+export function getDogImages(images) {
   return (dispatch) => {
     dispatch(createRequest());
-    return axios.get(`${URL_API}/breed/${breed}/images`)
-      .then((response) => dispatch(requestSuccess(response.data.message, 'breed')))
+    return axios.get(`${URL_API}/breed/${images}/images`)
+      .then((response) => dispatch(requestSuccess(response.data.message, 'images')))
       .catch(handleError(dispatch));
   }
 }

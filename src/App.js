@@ -14,10 +14,11 @@ class App extends Component {
   render() {
 
     const {
-      breed
+      images
     } = this.props;
-    console.log(breed);
+
     
+    console.log('images', images);
     return (
       <div className="App">
         <header className="App-header">
@@ -25,7 +26,7 @@ class App extends Component {
         </header>
         <div>
           {
-            breed && breed.map( (b) => console.log(b))
+            images && images.map( (image) => <div>{image}</div>)
           }
         </div>
       </div>
@@ -36,7 +37,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    breed: state.data.breed || null
+    images: state.data.images || []
   }
 }
 
