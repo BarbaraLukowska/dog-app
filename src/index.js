@@ -13,8 +13,8 @@ const initialState = {
 }
 
 const middleware = [
-  process.env.NODE_ENV === 'development' && createLogger({collapsed: true}),  //logging redux actions
-  thunkMiddleware                                                   //allows to return functions instead of actions for dispatch, awesome for async requests
+  process.env.NODE_ENV === 'development' && createLogger({collapsed: true}),
+  thunkMiddleware
 ].filter(Boolean);
 
 const configureStore = () => {

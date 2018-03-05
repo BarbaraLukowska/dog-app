@@ -1,18 +1,16 @@
 import axios from 'axios';
-import { requestError, requestSuccess, createRequest, handleError } from './requests';
-import * as types from '../types';
+import { requestSuccess, createRequest, handleError } from './requests';
 
 
 const URL_API = "https://dog.ceo/api"
 
-export function getAllDogs() {
+
+//get all breed images
+export function getDogImages(images) {
   return (dispatch) => {
     dispatch(createRequest());
-    return axios.get(`${URL_API}/breeds/list/all`)
-      .then((response) => dispatch(requestSuccess(response, 'dogs')))
+    return axios.get(`${URL_API}/breed/${images}/images`)
+      .then((response) => dispatch(requestSuccess(response.data.message, 'images')))
       .catch(handleError(dispatch));
   }
 }
-
-
-export default getAllDogs();

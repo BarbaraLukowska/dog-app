@@ -40,6 +40,7 @@ const isFetching = (state = false, action) => {
   }
 };
 
+
 const rootReducer = combineReducers({
   data,
   isFetching

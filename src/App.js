@@ -1,44 +1,49 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getAllDogs } from './actions/index';
+import { getDogImages } from './actions/index';
+import SearchBar from './modules/Search';
 
 import './App.css';
 
 class App extends Component {
 
-  componentDidMount() {
-    this.props.getAllDogs();
+  onSearchChange(value){
+    this.props.getDogImages(value);
   }
 
   render() {
 
     const {
-      dogs
+      images
     } = this.props;
 
+    
+    console.log('images', images);
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
+          <SearchBar handleChange={(e) => this.onSearchChange(e.target.value || null) } />
         </header>
-        <p className="App-intro">
-
-        </p>
+        <div>
+          {
+            images && images.map( (image) => <p>{image}</p>)
+          }
+        </div>
       </div>
     );
   }
 }
 
 
-// const mapStateToProps = (state) => {
-//   return {
-//     // dogs: state.data.dogs || []
-//   }
-// }
+const mapStateToProps = (state) => {
+  return {
+    images: state.data.images || []
+  }
+}
 
 const DogApp = connect(
-  null,
-  {getAllDogs}
+  mapStateToProps,
+  {getDogImages}
 )(App);
 
 export default DogApp;
