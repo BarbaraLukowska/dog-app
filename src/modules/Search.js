@@ -1,9 +1,9 @@
 import React from 'react';
 
-const SearchBar = ({handleChange}) => {
+const SearchBar = ({handleChange, handleSubmit}) => {
   return(
-    <form className="Search" >
-      <input 
+    <form className="Search" onSubmit={handleSubmit} >
+      <input
         type="text"
         placeholder="Search"
         onChange={handleChange}

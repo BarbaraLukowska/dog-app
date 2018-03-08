@@ -11,22 +11,30 @@ class App extends Component {
     this.props.getDogImages(value);
   }
 
+  submit(event){
+    event.preventDefault();
+  }
+
   render() {
 
     const {
       images
     } = this.props;
 
-    
-    console.log('images', images);
     return (
       <div className="App">
         <header className="App-header">
-          <SearchBar handleChange={(e) => this.onSearchChange(e.target.value || null) } />
+          <SearchBar
+            handleSubmit={() => this.submit()}
+            handleChange={(e) => this.onSearchChange(e.target.value || null) } />
         </header>
         <div>
           {
-            images && images.map( (image) => <p>{image}</p>)
+            Array.isArray(images) && images.map( (image, i) => {
+              return(
+                <img key={i}src={image} />
+              )
+            })
           }
         </div>
       </div>
