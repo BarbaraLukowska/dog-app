@@ -6,7 +6,7 @@ const URL_API = "https://dog.ceo/api"
 
 
 //get all breed images
-export function getDogImages(images) {
+export function getDogImages(images, input) {
   return (dispatch) => {
     dispatch(createRequest());
     return axios.get(`${URL_API}/breed/${images}/images`)

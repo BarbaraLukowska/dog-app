@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getDogImages } from './actions/index';
-import SearchBar from './modules/Search';
 
 import './App.css';
 
 class App extends Component {
 
-  onSearchChange(value){
-    this.props.getDogImages(value);
-  }
-
-  submit(event){
-    event.preventDefault();
+  handleClick(e){
+    this.props.getDogImages(this.textInput.value);
+    e.preventDefault();
   }
 
   render() {
@@ -24,9 +20,18 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <SearchBar
-            handleSubmit={() => this.submit()}
-            handleChange={(e) => this.onSearchChange(e.target.value || null) } />
+        <form className="Search" >
+          <input
+            type="text"
+            placeholder="Search"
+            ref={ (input) => {this.textInput = input}}
+          />
+          <input
+            type="submit"
+            value="Submit"
+            onClick={(e) => this.handleClick(e)}
+          />
+        </form>
         </header>
         <div>
           {
@@ -40,7 +45,7 @@ class App extends Component {
       </div>
     );
   }
-}
+} 
 
 
 const mapStateToProps = (state) => {
