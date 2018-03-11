@@ -3,8 +3,73 @@
 }
 
 .App-header {
-  height: 150px;
-  padding: 20px;
-  color: white;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+input {
+  outline: 0;
+  border: 0;
+}
+
+input[type="text"] {
+  width: 15rem;
+  padding: 8px 4px 6px 4px;
+  font-size: 1rem;
+  background: white;
+  border-bottom: 1px solid blue
+}
+
+input[type="text"]:focus {
+  border-bottom: 2px solid blue
+}
+
+input[type="text"] ~ label {
+  font-size: 1.2rem;
+  font-weight: 700;
+  position: absolute;
+  top: 14rem;
+  left: 20rem;
+  pointer-events: none;
+  margin-right: 12px;
+  transition: all 0.2s;
+  color: lightgray;
+}
+
+input[type="text"]:focus ~ label {
+  font-size: 0.8em;
+  top: 13rem;
+}
+
+input[type="submit"] {
+  background:#6100FB;
+  text-transform: uppercase;
+  color: white;
+  font-weight: 600;
+  margin-left: 1rem;
+  width: 10rem;
+  height: 2.5rem;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.dogs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.dog {
+  width: 15rem;
+  height: 15rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+p {
+  color: #6100FB;
+  font-weight: 700;
+  font-size: 1.5rem;
+}

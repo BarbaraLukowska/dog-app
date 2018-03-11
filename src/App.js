@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getDogImages } from './actions/index';
-import SearchBar from './modules/Search';
 
 import './App.css';
 
 class App extends Component {
 
-  onSearchChange(value){
-    this.props.getDogImages(value);
+  handleClick(e){
+    this.props.getDogImages(this.textInput.value);
+    e.preventDefault();
   }
 
   render() {
@@ -17,18 +17,37 @@ class App extends Component {
       images
     } = this.props;
 
-    
-    console.log('images', images);
     return (
       <div className="App">
         <header className="App-header">
-          <SearchBar handleChange={(e) => this.onSearchChange(e.target.value || null) } />
+          <form>
+            <input
+              id="breed"
+              type="text"
+              ref={ (input) => {this.textInput = input}}
+            />
+            <label htmlFor="breed">Breed name</label>
+            <input
+              type="submit"
+              value="Search"
+              onClick={(e) => this.handleClick(e)}
+            />
+          </form>
         </header>
-        <div>
-          {
-            images && images.map( (image) => <p>{image}</p>)
-          }
-        </div>
+        {(Array.isArray(images) && images.length >= 1) 
+          ?
+            <div className="dogs">
+              {Array.isArray(images) && images.map( (image, i) => (
+                  <div key={i} style={{backgroundImage: `url(${image})`}} className="dog" alt="doggy"/>
+                ))}
+            </div>
+          :
+            <div>
+              <p>
+                I didn't find any pictures. :(
+              </p>
+            </div>
+        }
       </div>
     );
   }
