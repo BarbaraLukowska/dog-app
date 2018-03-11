@@ -20,32 +20,37 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-        <form className="Search" >
-          <input
-            type="text"
-            placeholder="Search"
-            ref={ (input) => {this.textInput = input}}
-          />
-          <input
-            type="submit"
-            value="Submit"
-            onClick={(e) => this.handleClick(e)}
-          />
-        </form>
+          <form>
+            <input
+              type="text"
+              placeholder="Search"
+              ref={ (input) => {this.textInput = input}}
+            />
+            <input
+              type="submit"
+              value="Search"
+              onClick={(e) => this.handleClick(e)}
+            />
+          </form>
         </header>
-        <div>
-          {
-            Array.isArray(images) && images.map( (image, i) => {
-              return(
-                <img key={i}src={image} />
-              )
-            })
-          }
-        </div>
+        {images.length === 0
+          ?
+            <div>
+              <p>
+                {images}
+              </p>
+            </div>
+          :
+            <div className="dogs">
+              {Array.isArray(images) && images.map( (image, i) => (
+                  <div key={i} style={{backgroundImage: `url(${image})`}} className="dog" alt="doggy"/>
+                ))}
+            </div>
+        }
       </div>
     );
   }
-} 
+}
 
 
 const mapStateToProps = (state) => {
