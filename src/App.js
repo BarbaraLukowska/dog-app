@@ -38,7 +38,7 @@ class App extends Component {
           ?
             <div>
               <p>
-                {images}
+                I didn't find any pictures.
               </p>
             </div>
           :
