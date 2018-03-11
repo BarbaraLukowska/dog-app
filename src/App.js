@@ -34,18 +34,18 @@ class App extends Component {
             />
           </form>
         </header>
-        {images.length === 0
+        {(Array.isArray(images) && images.length >= 1) 
           ?
-            <div>
-              <p>
-                I didn't find any pictures.
-              </p>
-            </div>
-          :
             <div className="dogs">
               {Array.isArray(images) && images.map( (image, i) => (
                   <div key={i} style={{backgroundImage: `url(${image})`}} className="dog" alt="doggy"/>
                 ))}
+            </div>
+          :
+            <div>
+              <p>
+                I didn't find any pictures. :(
+              </p>
             </div>
         }
       </div>

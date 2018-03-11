@@ -60,9 +60,16 @@ input[type="submit"] {
   justify-content: center;
   flex-wrap: wrap;
 }
+
 .dog {
   width: 15rem;
   height: 15rem;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+p {
+  color: #6100FB;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
