@@ -22,10 +22,11 @@ class App extends Component {
         <header className="App-header">
           <form>
             <input
+              id="breed"
               type="text"
-              placeholder="Search"
               ref={ (input) => {this.textInput = input}}
             />
+            <label htmlFor="breed">Breed name</label>
             <input
               type="submit"
               value="Search"

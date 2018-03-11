@@ -4,7 +4,6 @@
 
 .App-header {
   height: 50vh;
-  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,23 +19,39 @@ input[type="text"] {
   padding: 8px 4px 6px 4px;
   font-size: 1rem;
   background: white;
-  color: rgba(0,0,0,0.67);
-  border-bottom: 1px solid grey
+  border-bottom: 1px solid blue
 }
 
 input[type="text"]:focus {
   border-bottom: 2px solid blue
 }
 
+input[type="text"] ~ label {
+  font-size: 1.2rem;
+  font-weight: 700;
+  position: absolute;
+  top: 14rem;
+  left: 20rem;
+  pointer-events: none;
+  margin-right: 12px;
+  transition: all 0.2s;
+  color: lightgray;
+}
+
+input[type="text"]:focus ~ label {
+  font-size: 0.8em;
+  top: 13rem;
+}
+
 input[type="submit"] {
-  background: blue;
+  background:#6100FB;
   text-transform: uppercase;
   color: white;
   font-weight: 600;
   margin-left: 1rem;
-  width: 7rem;
+  width: 10rem;
   height: 2.5rem;
-  border-radius: 5px;
+  border-radius: 3px;
   cursor: pointer;
 }
 
@@ -46,8 +61,8 @@ input[type="submit"] {
   flex-wrap: wrap;
 }
 .dog {
-  width: 20rem;
-  height: 20rem;
+  width: 15rem;
+  height: 15rem;
   background-size: cover;
   background-repeat: no-repeat;
 }
